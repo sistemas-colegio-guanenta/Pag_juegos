@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice Gamer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Press Start 2P', cursive;
+            color: #2a1968;
+        }
+        .background {
+            background-image: url("img/pollo.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px #8266eb;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .button {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #8266eb;
+            text-decoration: none;
+            font-size: 18px;
+            border: 2px solid #8266eb;
+            box-shadow: 0 0 10px #8266eb;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .button:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 0 20px #8266eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="title">free fire Games</div>
+        <div class="buttons">
+            <a href="triky.html" class="button">1</a>
+            <a href="memoria.html" class="button">2</a>
+            <a href="minas.html" class="button">3</a>
+            <a href="rompecabezas.html" class="button">4</a>
+            <a href="invaders.html" class="button">5</a>
+            <a href="tanque.html" class="button">6</a>
+        </div>
+    </div>
+</body>
+</html>
+

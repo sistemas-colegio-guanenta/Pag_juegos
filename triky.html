@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 1 - Juego Tricky</title>
+    <style>
+        @import url();
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Press Start 2P', cursive;
+            color: #00ff00;
+        }
+        .background {
+            background-image: url('fondo1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .button {
+            width: 150px;
+            height: 150px;
+            background-color: rgba(128, 0, 128, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 14px;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .button:hover {
+            background-color: rgba(128, 0, 128, 0.9);
+            box-shadow: 0 0 20px #00ff00;
+        }
+        .game-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 10px;
+            margin-bottom: 20px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="game-title">Juego Tricky</div>
+        <div class="board">
+            <div class="cell" onclick="makeMove(this)"></div>
+            <div class="cell" onclick="makeMove(this)"></div>
+            <div class="cell" onclick="makeMove(this)"></div>
+            <div class="cell" onclick="makeMove(this)"></div>
+            <div class="cell" onclick="makeMove(this)"></div>
+            <div class="cell" onclick="makeMove(this)"></div>
+            <div class="cell" onclick="makeMove(this)"></div>
+            <div class="cell" onclick="makeMove(this)"></div>
+            <div class="cell" onclick="makeMove(this)"></div>
+        </div>
+        <a href="index.html" class="button">Regresar al Índice</a>
+    </div>
+    <script>
+        let currentPlayer = 'X';
+        let board = ['', '', '', '', '', '', '', '', ''];
+
+        function makeMove(cell) {
+            const index = Array.from(cell.parentNode.children).indexOf(cell);
+            if (board[index] === '') {
+                board[index] = currentPlayer;
+                cell.textContent = currentPlayer;
+                if (checkWin()) {
+                    setTimeout(() => alert(`${currentPlayer} gana!`), 10);
+                    resetGame();
+                } else if (board.every(cell => cell !== '')) {
+                    setTimeout(() => alert('Empate!'), 10);
+                    resetGame();
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                }
+            }
+        }
+
+        function checkWin() {
+            const winPatterns = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+            return winPatterns.some(pattern => {
+                return pattern.every(index => board[index] === currentPlayer);
+            });
+        }
+
+        function resetGame() {
+            board = ['', '', '', '', '', '', '', '', ''];
+            Array.from(document.getElementsByClassName('cell')).forEach(cell => {
+                cell.textContent = '';
+            });
+        }
+    </script>
+</body>
+</html>
